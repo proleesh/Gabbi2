@@ -1,0 +1,16 @@
+spring:
+  application:
+          name: Gabbi2
+
+server:
+  servlet:
+    context-path: /
+    session:
+      timeout: 60
+  error:
+    path: /error
+  address: 10.0.0.13
+  tomcat:
+    threads:
+      max: 100
+    uri-encoding: UTF-8
