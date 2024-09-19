@@ -21,10 +21,10 @@ public class Song {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="mv_id", referencedColumnName = "id")
     private MV mv;
-    public Song(String title, String artist, MV mv, String fileName) {
+    public Song(String title, String artist, String fileName, MV mv) {
         this.title = title;
         this.artist = artist;
-        this.mv = mv;
         this.fileName = fileName;
+        this.mv = mv;
     }
 }

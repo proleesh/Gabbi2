@@ -32,13 +32,14 @@ public class SongController {
     public ResponseEntity<Song> uploadSong(
             @RequestParam("title") String title,
             @RequestParam("artist") String artist,
-            @RequestParam("file")MultipartFile file
+            @RequestParam("file")MultipartFile file,
+            @RequestParam(value="mvFile", required=false) MultipartFile mvFile
             ){
         Song song = new Song();
         song.setTitle(title);
         song.setArtist(artist);
 
-        Song savedSong = songService.saveSong(song, file);
+        Song savedSong = songService.saveSong(song, file, mvFile);
         return ResponseEntity.ok(savedSong);
     }
 

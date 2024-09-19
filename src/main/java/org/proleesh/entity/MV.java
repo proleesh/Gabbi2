@@ -1,16 +1,13 @@
 package org.proleesh.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString(exclude = "song")
+@EqualsAndHashCode
 @Entity
 public class MV {
 
@@ -19,6 +16,9 @@ public class MV {
     private Long id;
 
     private String mvUrl;
+
+    @OneToOne(mappedBy = "mv")
+    private Song song;
 
     public MV(String mvUrl){
         this.mvUrl = mvUrl;

@@ -9,19 +9,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/**
- * @author sung-hyuklee
- */
 @Service
-public class SongStorageService {
-    private final Path songStorageLocation;
+public class MVStorageService {
+    private final Path mvStorageLocation;
 
-    public SongStorageService(@Value("${music.upload-dir}") String uploadDir){
-        this.songStorageLocation = Paths.get(uploadDir)
-                .toAbsolutePath()
-                .normalize();
+    public MVStorageService(@Value("${mv.upload-dir}") String uploadDir) {
+        this.mvStorageLocation = Paths.get(uploadDir).toAbsolutePath().normalize();
+
         try{
-            Files.createDirectories(this.songStorageLocation);
+            Files.createDirectories(this.mvStorageLocation);
         }catch(IOException e){
             throw new RuntimeException("해당 파일은 업로드할 수 없습니다." + e.getMessage());
         }
@@ -31,11 +27,12 @@ public class SongStorageService {
         String fileName = file.getOriginalFilename();
 
         try{
-            Path targetLocation = this.songStorageLocation.resolve(fileName);
+            Path targetLocation = this.mvStorageLocation.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation);
+
             return fileName;
         }catch(IOException e){
-            throw new RuntimeException("해당 음악 파일 저장 불가 " + fileName + ". 다시 시도 해보세요. " + e.getMessage());
+            throw new RuntimeException("해당 비디오 파일 저장 불가 " + fileName + ". 다시 시도 해보세요. " + e.getMessage());
         }
     }
 }
