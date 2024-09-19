@@ -21,6 +21,10 @@ public class Song {
     private String artist;
     private String fileName;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="mv_id", referencedColumnName = "id")
     private MV mv;

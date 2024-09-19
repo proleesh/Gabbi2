@@ -20,7 +20,7 @@ public class MV {
 
     private String mvUrl;
 
-    @OneToOne(mappedBy = "mv")
+    @OneToOne(mappedBy = "mv", cascade = CascadeType.ALL)
     private Song song;
 
     public MV(String mvUrl){

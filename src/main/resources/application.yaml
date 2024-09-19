@@ -30,6 +30,11 @@ server:
     threads:
       max: 100
     uri-encoding: UTF-8
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
 
 music:
   upload-dir: uploads/
