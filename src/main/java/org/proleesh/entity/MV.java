@@ -3,6 +3,9 @@ package org.proleesh.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * @author sung-hyuklee
+ */
 @NoArgsConstructor
 @Getter
 @Setter
