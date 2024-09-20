@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author sung-hyuklee
+ */
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/user")

@@ -50,7 +50,7 @@ public class SongController {
         }
 
         String username = authentication.getName();
-        System.out.println("Authenticated username: " + username); // 调试日志
+        System.out.println("Authenticated username: " + username);
 
         User user = userRepository.findByUsername(username)
                 .orElseThrow(()->new RuntimeException("사용자를 못 찾았습니다."));
