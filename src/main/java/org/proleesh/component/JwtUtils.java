@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ * @author sung-hyuklee
+ */
 @Component
 public class JwtUtils {
     private final String SECRET_KEY = "t#`ZelA('T)726<";

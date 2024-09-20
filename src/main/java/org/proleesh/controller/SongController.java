@@ -46,7 +46,7 @@ public class SongController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null) {
-            throw new RuntimeException("No authentication found");
+            throw new RuntimeException("아무 인증도 못 찾았습니다.!");
         }
 
         String username = authentication.getName();
