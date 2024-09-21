@@ -15,6 +15,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api/mvs")
+@CrossOrigin("*")
 @RequiredArgsConstructor
 public class MVController {
     private final MVService mvService;

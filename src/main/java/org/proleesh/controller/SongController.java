@@ -19,6 +19,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api/songs")
+@CrossOrigin("*")
 @RequiredArgsConstructor
 public class SongController {
     private final SongService songService;
