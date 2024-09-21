@@ -6,6 +6,7 @@ import org.proleesh.entity.Song;
 import org.proleesh.repository.SongRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,16 +30,32 @@ public class SongService {
         return songRepository.findById(id);
     }
 
+
+
     public Song saveSong(Song song, MultipartFile file, MultipartFile mvFile){
         String fileName = songStorageService.storeFile(file);
-        song.setFileName(fileName);
 
-        if(mvFile != null && !mvFile.isEmpty()){
-            MV mv = new MV();
+        String uriString = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/songs/files/")
+                .path(fileName)
+                .toUriString();
+        song.setAudioUrl(uriString);
+
+        if (mvFile != null && !mvFile.isEmpty()) {
             String mvFileName = mvStorageService.storeFile(mvFile);
-            mv.setMvUrl(mvFileName);
+            song.setFileName(fileName);
+
+            String mvUriString = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/songs/files/")
+                    .path(mvFileName)
+                    .toUriString();
+
+            MV mv = new MV();
+            mv.setMvUrl(mvUriString);
+            mvService.createMV(mv, mvFile);
             song.setMv(mv);
         }
+
         return songRepository.save(song);
     }
 

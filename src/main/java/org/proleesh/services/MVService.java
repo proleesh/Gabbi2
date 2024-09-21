@@ -26,7 +26,8 @@ public class MVService {
     }
 
     public String storeMVFile(MultipartFile file) {
-        return mvStorageService.storeFile(file);
+        String fileName = file.getOriginalFilename();
+        return "/mv/" + fileName;
     }
 
     public MV createMV(MV mv, MultipartFile file) {

@@ -7,6 +7,7 @@ import lombok.*;
  * @author sung-hyuklee
  */
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = "song")
@@ -23,7 +24,4 @@ public class MV {
     @OneToOne(mappedBy = "mv", cascade = CascadeType.ALL)
     private Song song;
 
-    public MV(String mvUrl){
-        this.mvUrl = mvUrl;
-    }
 }
