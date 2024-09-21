@@ -7,8 +7,14 @@
 ### 기술 스택
 * JDK 21 LTS
 * Spring Boot 3.3.x
+* Based on Spring Framework 6.3.x
+* Spring Security 6.3.x
+* JWT
+* Lombok
 * Jakarta EE 9 Verified
 * MySQL 9
+* Persistence Layer: JPA
+
 ### 팀 정보
 * SDEK 팀은 세명대학교 IT엔지니어링대학 스마트IT학부 전공 학생들로 구성되어 있으며, 미디어 스트리밍 서비스 개발을 목표로 합니다.
 * 팀원:
