@@ -47,7 +47,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**",
                                 "/api/songs/**",
                                 "/api/mvs/**",
-                                "/songs/files/**").permitAll()
+                                "/songs/files/**","/mv/**").permitAll()
                         .anyRequest().authenticated()
                 ).sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(new JwtAuthenticationFilter(jwtUtils, customUserDetailsService),

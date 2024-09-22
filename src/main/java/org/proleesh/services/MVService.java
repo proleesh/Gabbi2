@@ -6,8 +6,14 @@ import org.proleesh.repository.MVRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * @author sung-hyuklee
@@ -26,8 +32,28 @@ public class MVService {
     }
 
     public String storeMVFile(MultipartFile file) {
-        String fileName = file.getOriginalFilename();
-        return "/mv/" + fileName;
+        String originalFilename = file.getOriginalFilename();
+        String extension = "";
+
+        if (originalFilename != null && originalFilename.contains(".")) {
+            // 확장자 추출 (마지막 "." 이후의 문자열을 가져옴)
+            extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+        }
+
+        // UUID를 사용하여 새로운 파일명 생성
+        String fileName = UUID.randomUUID().toString() + extension; // UUID + 확장자
+        Path uploadPath = Paths.get("uploads/mv");
+
+        try{
+            if(!Files.exists(uploadPath)){
+                Files.createDirectories(uploadPath);
+            }
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            return "/mv/" + fileName;
+        }catch(IOException e){
+            throw new RuntimeException("파일 저장 중 오류 발생: " + e.getMessage());
+        }
     }
 
     public MV createMV(MV mv, MultipartFile file) {
