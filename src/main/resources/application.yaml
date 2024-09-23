@@ -25,7 +25,7 @@ server:
       timeout: 60
   error:
     path: /error
-#  address: address
+#  address: 172.16.1.101
   tomcat:
     threads:
       max: 100
