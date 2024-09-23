@@ -35,8 +35,17 @@ logging:
     org:
       springframework:
         security: DEBUG
+  file:
+    path: logs/
+  logback:
+    rollback:
+      rolling policy:
+              max-file-size: 5MB
+              max-history: 3
 
 music:
   upload-dir: uploads/
 mv:
   upload-dir: uploads/mv
+
+
